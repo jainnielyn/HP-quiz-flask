@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"> 
+    <!--link href needs to use 'url for' because "static/css/main.css" won't work, why?-->
+    {% block head %} <title>Harry Potter Spell Quiz</title> {% endblock %}
+</head>
+<body>
+    {% block body %}
+            
+    {% endblock %}
+</body>
+</html>
