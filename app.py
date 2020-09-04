@@ -15,7 +15,14 @@ def get_questions(num):
     options = random.sample(spells, num*3)
     options = [o['spell'] for o in options]
 
-    return test_spells, options
+    # Create a list of dictionaries where each dict has Q, A and options
+    test_list = []
+
+    for s in test_spells:
+        answer = s['spell'] # what if answer in o
+        o = random.sample(options,3) # add answer and randomize
+        test_list.append({'spell':s['spell'], 'type':s['type'], 'effect'['effect'], 'options':o})
+    return test_list
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
@@ -28,7 +35,7 @@ def index():
         print(test_spells)
 
         # Display test
-        return render_template(test_spells=test_spells, options=options)
+        return render_template("index.html", test_list=test_list)
     else:
         return render_template("index.html")
 

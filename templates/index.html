@@ -2,15 +2,27 @@
 
 {% block body %}
 <div class="box">
+    {% if test_list %}
+        {% for i in range(test_list|length) %} <!-- display 3 at a time-->
+        <div class="q-item">
+            <h3>Question {{i+1}}</h3>
+            <p>Which {{ test_spells[i]['type']|lower }} {{ test_spells[i]['effect'] }}?</p>
+            <div class="choice"><input type="radio" name="r1"><label for="r1">Choice A</label></div>
+            <div class="choice"><input type="radio" name="r2"><label for="r2">Choice A</label></div>
+            <div class="choice"><input type="radio" name="r3"><label for="r3">Choice A</label></div>
+            <div class="choice"><input type="radio" name="r4"><label for="r4">Choice A</label></div>
+        </div>
+        {% endfor %}
+    {% else %}
     <div>
         <h1>Harry Potter Spell Quiz</h1>
         <p>You will be tested on your knowledge of spells.</p>
         <form action="/" method="POST">
             <input type="text" id="num" name="num">
             <input type="submit" class="button" id="submit" value="Start">
-    </form>
+        </form>
     </div>
-    
-</div>
+    {% endif %}
+</div> <!--box-->
 
 {% endblock%}
