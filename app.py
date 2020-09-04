@@ -20,11 +20,15 @@ def get_questions(num):
 @app.route('/', methods=['POST', 'GET'])
 def index():
     if request.method == "POST":
+        # User input number of questions
         num = int(request.form['num'])
-        #return f"Starting game with {num} questions"
+
+        # Get questions from API
         test_spells, options = get_questions(num)
         print(test_spells)
-        return "Printed test spells"
+
+        # Display test
+        return render_template(test_spells=test_spells, options=options)
     else:
         return render_template("index.html")
 
