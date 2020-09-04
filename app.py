@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, url_for
 import requests, json
-import random, config
+import random
+import config
 
 app = Flask(__name__)
 
