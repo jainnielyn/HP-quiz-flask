@@ -6,11 +6,11 @@
         {% for i in range(test_list|length) %} <!-- display 3 at a time-->
         <div class="q-item">
             <h3>Question {{i+1}}</h3>
-            <p>Which {{ test_spells[i]['type']|lower }} {{ test_spells[i]['effect'] }}?</p>
-            <div class="choice"><input type="radio" name="r1"><label for="r1">Choice A</label></div>
-            <div class="choice"><input type="radio" name="r2"><label for="r2">Choice A</label></div>
-            <div class="choice"><input type="radio" name="r3"><label for="r3">Choice A</label></div>
-            <div class="choice"><input type="radio" name="r4"><label for="r4">Choice A</label></div>
+            <p>Which {{ test_list[i]['type']|lower }} {{ test_list[i]['effect'] }}?</p>
+            <div class="choice"><input type="radio" name="r1"><label for="r1">{{ test_list[i]['options'][0] }}</label></div>
+            <div class="choice"><input type="radio" name="r2"><label for="r2">{{ test_list[i]['options'][1] }}</label></div>
+            <div class="choice"><input type="radio" name="r3"><label for="r3">{{ test_list[i]['options'][2] }}</label></div>
+            <div class="choice"><input type="radio" name="r4"><label for="r4">{{ test_list[i]['options'][3] }}</label></div>
         </div>
         {% endfor %}
     {% else %}

@@ -20,8 +20,10 @@ def get_questions(num):
 
     for s in test_spells:
         answer = s['spell'] # what if answer in o
-        o = random.sample(options,3) # add answer and randomize
-        test_list.append({'spell':s['spell'], 'type':s['type'], 'effect'['effect'], 'options':o})
+        o = random.sample(options,3) 
+        o.append(answer)
+        random.shuffle(o)
+        test_list.append({'spell':s['spell'], 'type':s['type'], 'effect':s['effect'], 'options':o})
     return test_list
 
 @app.route('/', methods=['POST', 'GET'])
@@ -31,8 +33,8 @@ def index():
         num = int(request.form['num'])
 
         # Get questions from API
-        test_spells, options = get_questions(num)
-        print(test_spells)
+        test_list = get_questions(num)
+        print(test_list)
 
         # Display test
         return render_template("index.html", test_list=test_list)
