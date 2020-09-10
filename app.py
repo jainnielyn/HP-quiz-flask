@@ -5,18 +5,20 @@ import config
 
 app = Flask(__name__)
 
-def get_questions(num):
-    # Get all spells from API
-    response = requests.get(f"https://www.potterapi.com/v1/spells?key={config.api_key}")
-    spells = response.json()
+# Get all spells from API
+response = requests.get(f"https://www.potterapi.com/v1/spells?key={config.api_key}")
+spells = response.json()
+# Global variable for a list of dict with question, multiple choice, and answer
+test_list = []
 
+def get_questions(num):
     # Get num amount of spell questions, and multiple choice options
     test_spells = random.sample(spells, num)
     options = random.sample(spells, num*3)
     options = [o['spell'] for o in options]
 
-    # Create a list of dictionaries where each dict has Q, A and options
-    test_list = []
+    # Accessing global variable
+    global test_list
 
     for s in test_spells:
         answer = s['spell'] # what if answer in o
