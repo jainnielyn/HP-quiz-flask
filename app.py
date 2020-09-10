@@ -41,5 +41,13 @@ def index():
     else:
         return render_template("index.html")
 
+@app.route('/quiz', methods=['POST'])
+def quiz():
+    correct = 0
+
+    answered = request.form['options']
+    
+    return answered
+
 if __name__ == "__main__":
     app.run(debug=True)
