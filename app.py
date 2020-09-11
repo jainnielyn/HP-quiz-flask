@@ -11,10 +11,11 @@ spells = response.json()
 # Global variable for a list of dict with question, multiple choice, and answer
 test_list = []
 
+
 def get_questions(num):
     # Get num amount of spell questions, and multiple choice options
     test_spells = random.sample(spells, num)
-    options = random.sample(spells, num*3)
+    options = spells
     options = [o['spell'] for o in options]
 
     # Accessing global variable
@@ -27,6 +28,7 @@ def get_questions(num):
         random.shuffle(o)
         test_list.append({'spell':s['spell'], 'type':s['type'], 'effect':s['effect'], 'options':o})
     return test_list
+
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
@@ -44,16 +46,26 @@ def index():
     else:
         return render_template("index.html")
 
+
 @app.route('/quiz', methods=['POST'])
 def quiz():
     correct = 0
 
-    for i in range(len(test_list)):
-        answered = request.form[str(i)+'options']
-        if answered == test_list[i]['spell']:
-            correct += 1
+    try:
+        for i in range(len(test_list)):
+            answered = request.form[str(i)+'options']
+            if answered == test_list[i]['spell']:
+                correct += 1
     
-    return f"Correct answers: {correct}"
+    except:
+        pass
+
+    return render_template("result.html", correct=correct)
+
+
+@app.route('/replay', methods=['POST'])
+def replay():
+    return render_template("index.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -32,7 +32,6 @@ body {
 }
 
 .button {
-    width: 10%;
     padding: 5px;
 }
 
@@ -126,3 +125,11 @@ label {
     background: white;
   }
   /* for the radio button */
+
+  #wand {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    margin-bottom: 1em;
+  }

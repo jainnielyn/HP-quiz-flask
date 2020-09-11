@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="box">
+    <img id="wand" src="../static/img/wand.png">
+    <p class="question">Congratulations, you answered {{correct}} correctly! {{correct*2}} points to your House!</p>
+
+    <form action="/replay" method="POST">
+        <input type="submit" class="button" id="submit" value="Play again?">
+    </form>
+</div> <!--box-->
+
+{% endblock%}
