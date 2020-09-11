@@ -36,6 +36,7 @@ def index():
 
         # Get questions from API
         test_list = get_questions(num)
+        ##
         print(test_list)
 
         # Display test
@@ -47,9 +48,12 @@ def index():
 def quiz():
     correct = 0
 
-    answered = request.form['options']
+    for i in range(len(test_list)):
+        answered = request.form[str(i)+'options']
+        if answered == test_list[i]['spell']:
+            correct += 1
     
-    return answered
+    return f"Correct answers: {correct}"
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -9,19 +9,19 @@
             <h2>Question {{i+1}}</h3>
             <p class="question">Which {{ test_list[i]['type']|lower }} {{ test_list[i]['effect'] }}?</p>
             <label class="container">{{ test_list[i]['options'][0] }}
-                <input type="radio" name="{{i+1}}options" value="{{test_list[i]['options'][0]}}">
+                <input type="radio" name="{{i}}options" value="{{test_list[i]['options'][0]}}">
                 <span class="checkmark"></span>
             </label>
             <label class="container">{{ test_list[i]['options'][1] }}
-                <input type="radio" name="{{i+1}}options" value="{{test_list[i]['options'][1]}}">
+                <input type="radio" name="{{i}}options" value="{{test_list[i]['options'][1]}}">
                 <span class="checkmark"></span>
             </label>
             <label class="container">{{ test_list[i]['options'][2] }}
-                <input type="radio" name="{{i+1}}options" value="{{test_list[i]['options'][2]}}">
+                <input type="radio" name="{{i}}options" value="{{test_list[i]['options'][2]}}">
                 <span class="checkmark"></span>
             </label>
             <label class="container">{{ test_list[i]['options'][3] }}
-                <input type="radio" name="{{i+1}}options" value="{{test_list[i]['options'][3]}}">
+                <input type="radio" name="{{i}}options" value="{{test_list[i]['options'][3]}}">
                 <span class="checkmark"></span>
             </label>
             <!--
