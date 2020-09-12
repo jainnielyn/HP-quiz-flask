@@ -65,6 +65,10 @@ def quiz():
 
 @app.route('/replay', methods=['POST'])
 def replay():
+    # Reset list of questions if user replays
+    global test_list
+    test_list = []
+
     return render_template("index.html")
 
 if __name__ == "__main__":
