@@ -2,12 +2,21 @@
 
 {% block body %}
 <div class="box">
-    <img id="wand" src="../static/img/wand.png">
-    <p class="question">Congratulations, you answered {{correct}} correctly! {{correct*2}} points to your House!</p>
+    <div class="container">
+        <div class="text-center fixed-height mt-4">
+            <img id="wand" src="../static/img/wand.png">
+        </div>
+        
+        <p class="text-center">{{ msg[0] }} You answered {{correct}} correctly! {{ msg[1] }}</p>
 
-    <form action="/replay" method="POST">
-        <input type="submit" class="button" id="submit" value="Play again?">
-    </form>
+        <form action="/replay" method="POST">
+            <div class="text-center">
+                <button class="btn btn-info mb-3" type="submit">Play again?</button>
+            </div>
+            
+        </form>
+    </div>
+    
 </div> <!--box-->
 
 {% endblock%}

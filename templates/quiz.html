@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block body %}
+<form action="/quiz" method="POST">
+    {% for i in range(test_list|length) %}
+        <div class="container">
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5>Question {{i+1}}</h5>
+                    <h5>Which {{ test_list[i]['type']|lower }} {{ test_list[i]['effect'] }}?</h5>
+                </div>
+                <div class="card-body">
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="{{i}}1" name="{{i}}options" class="custom-control-input" value="{{ test_list[i]['options'][0] }}" required>
+                        <label class="custom-control-label" for="{{i}}1">{{ test_list[i]['options'][0] }}</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input type="radio"  id="{{i}}2" name="{{i}}options" class="custom-control-input" value="{{ test_list[i]['options'][1] }}"required>
+                        <label class="custom-control-label" for="{{i}}2">{{ test_list[i]['options'][1] }}</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="{{i}}3" name="{{i}}options" class="custom-control-input" value="{{ test_list[i]['options'][2] }}"required>
+                        <label class="custom-control-label" for="{{i}}3">{{ test_list[i]['options'][2] }}</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="{{i}}4" name="{{i}}options" class="custom-control-input" value="{{ test_list[i]['options'][3] }}"required>
+                        <label class="custom-control-label" for="{{i}}4">{{ test_list[i]['options'][3] }}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="container">
+        <div class="text-center">
+            <button class="btn btn-info my-4 mx-auto" type="submit" id="quiz-btn"><span>Submit</span></button>
+        </div>
+    </div>
+
+    </form>
+{% endblock%}

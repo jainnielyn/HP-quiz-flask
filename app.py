@@ -42,7 +42,7 @@ def index():
         print(test_list)
 
         # Display test
-        return render_template("index.html", test_list=test_list)
+        return render_template("quiz.html", test_list=test_list)
     else:
         return render_template("index.html")
 
@@ -51,16 +51,18 @@ def index():
 def quiz():
     correct = 0
 
-    try:
-        for i in range(len(test_list)):
-            answered = request.form[str(i)+'options']
-            if answered == test_list[i]['spell']:
-                correct += 1
-    
-    except:
-        pass
+    for i in range(len(test_list)):
+        answered = request.form[str(i)+'options']
+        print(f"COMPARING {answered} and {test_list[i]['spell']}")
+        if answered == test_list[i]['spell']:
+            correct += 1
 
-    return render_template("result.html", correct=correct)
+    if correct >= len(test_list)/2:
+        msg = ["Congratulations! ", "Dumbledore is proud."]
+    else:
+        msg = ["How embarassing. ", "Snape laughs behind your back."]
+
+    return render_template("result.html", correct=correct, msg=msg)
 
 
 @app.route('/replay', methods=['POST'])

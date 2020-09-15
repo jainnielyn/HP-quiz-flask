@@ -2,55 +2,20 @@
 
 {% block body %}
 <div class="box">
-    {% if test_list %}
-        {% for i in range(test_list|length) %} <!-- display 3 at a time-->
-        <form action="/quiz" method="POST">
-        <div class="q-item">
-            <h2>Question {{i+1}}</h3>
-            <p class="question">Which {{ test_list[i]['type']|lower }} {{ test_list[i]['effect'] }}?</p>
-            <label class="container">{{ test_list[i]['options'][0] }}
-                <input type="radio" name="{{i}}options" required value="{{test_list[i]['options'][0]}}">
-                <span class="checkmark"></span>
-            </label>
-            <label class="container">{{ test_list[i]['options'][1] }}
-                <input type="radio" name="{{i}}options" required value="{{test_list[i]['options'][1]}}">
-                <span class="checkmark"></span>
-            </label>
-            <label class="container">{{ test_list[i]['options'][2] }}
-                <input type="radio" name="{{i}}options" required value="{{test_list[i]['options'][2]}}">
-                <span class="checkmark"></span>
-            </label>
-            <label class="container">{{ test_list[i]['options'][3] }}
-                <input type="radio" name="{{i}}options" required value="{{test_list[i]['options'][3]}}">
-                <span class="checkmark"></span>
-            </label>
-            <!--
-            <div class="choice"><button onclick="myFunction()">{{ test_list[i]['options'][0] }}</button></div>
-            <div class="choice"><input type="radio" name="options" value="{{test_list[i]['options'][0]}}"><label for="r1">{{ test_list[i]['options'][0] }}</label></div>
-            <div class="choice"><input type="radio" name="options" value="{{test_list[i]['options'][1]}}"><label for="r2">{{ test_list[i]['options'][1] }}</label></div>
-            <div class="choice"><input type="radio" name="options" value="{{test_list[i]['options'][2]}}"><label for="r3">{{ test_list[i]['options'][2] }}</label></div>
-            <div class="choice"><input type="radio" name="options" value="{{test_list[i]['options'][3]}}"><label for="r4">{{ test_list[i]['options'][3] }}</label></div>
-            -->
-        </div>
-        {% endfor %}
-        <input type="submit" class="button" id="submit" value="Submit">
+    <div class="container">
+        <h1 class="pb-2 mt-4 mb-2 border-bottom">Harry Potter Spell Quiz</h1>
+        <p>Welcome, young one! You will be tested on your knowledge of spells.</p>
+        <p>How many questions are you confident to answer?</p>
+        <form action="/" method="POST" class="form-group">
+            <div class="row">
+                <div class="col-md-10 form-group mb-3">
+                    <input type="number" class="form-control" name="num" placeholder="1-150" min="1" max="150">
+                </div>
+                <div class="col-md-2 form-group mb-3">
+                    <button class="btn btn-info" type="submit">Start</button>
+                </div>
+            </div>
         </form>
-        <div class="w3-light-grey"></div>
-        
-            
-        
-    {% else %}
-    <div>
-        <h1>Harry Potter Spell Quiz</h1>
-        <p>You will be tested on your knowledge of spells.</p>
-        <p>How many questions? (1-150)</p>
-        <form action="/" method="POST">
-            <input type="number" id="num" name="num" min="1" max="150">
-            <input type="submit" class="button" id="submit" value="Start">
-        </form>
-        <div></div>
     </div>
-    {% endif %}
 </div> <!--box-->
-
 {% endblock%}

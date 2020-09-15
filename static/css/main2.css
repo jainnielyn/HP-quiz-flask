@@ -1,0 +1,56 @@
+body {
+    /*background-image: url("../img/bg1.jpg"); */
+    background: url("../img/bg1.jpg") no-repeat center bottom fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.box {
+    width: 40%;
+    background-color: rgba(239,222,205,0.65);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+}
+
+.card{
+    background-color: rgba(239,222,205,0.65);
+}
+
+.card-header {
+    background-color: rgba(239,222,205,0.8);
+}
+
+#quiz-btn:hover span {
+    display:none
+  }
+
+#quiz-btn:hover:before {
+    content: "Wingardium Leviosa!";
+    font-style: italic;
+  }
+
+#quiz-btn:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+  }
+
+#wand {
+    height: 7vh;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes blink {
+    from {height: 7vh;}
+    to {height: 12vh;}
+}
+
+.fixed-height {
+    height: 15vh;
+}
