@@ -4,7 +4,7 @@
 <div class="box beige-bg-lighter">
     <div class="container">
         <h2 class="pb-2 mt-4 mb-2 border-bottom">Report an issue</h2>
-        <form action="/" method="POST" class="form-group">
+        <form action="/contact" method="POST" class="form-group">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" required>
@@ -16,6 +16,11 @@
             <div class="text-center">
                 <button class="btn btn-info mb-3" type="submit">Submit</button>
             </div>
+            {% if msg %}
+                <div class="alert alert-secondary" role="alert">
+                    {{ msg }}
+                </div>
+            {% endif %}
         </form>
     </div>
 </div> <!--box-->

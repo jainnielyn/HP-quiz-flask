@@ -76,8 +76,22 @@ def replay():
 
 @app.route('/contact', methods=['POST', 'GET'])
 def contact():
-    return render_template("contact.html")
+    if request.method == "POST":
+        return render_template("contact.html",msg="Issue sent to developer. Thank you!")
+
+    else:
+        return render_template("contact.html")
 
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+app.secret_key = config.secret_key
+ 
+app.config["MAIL_SERVER"] = config.mail_server
+app.config["MAIL_PORT"] = config.mail_port
+app.config["MAIL_USE_SSL"] = config.mail_use_ssl
+app.config["MAIL_USERNAME"] = config.mail_username
+app.config["MAIL_PASSWORD"] = config.mail_password
+ 
+mail.init_app(app)
