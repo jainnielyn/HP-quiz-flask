@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, url_for
 from flask_mail import Message, Mail
+from static import contactForm
 import requests, json
 import random
 import config
@@ -87,6 +88,8 @@ def replay():
 
 @app.route('/contact', methods=['POST', 'GET'])
 def contact():
+    form = ContactForm()
+
     if request.method == "POST":
         name = request.form['name']
         email = request.form['email']
@@ -103,10 +106,10 @@ def contact():
         """ % (name, email, issue)
         mail.send(msg)
 
-        return render_template("contact.html",msg="Issue sent to developer. Thank you!")
+        return render_template("contact.html", form=form, msg="Issue sent to developer. Thank you!")
 
     else:
-        return render_template("contact.html")
+        return render_template("contact.html", form=form)
 
 
 if __name__ == "__main__":
