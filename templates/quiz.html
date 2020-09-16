@@ -4,8 +4,8 @@
 <form action="/quiz" method="POST">
     {% for i in range(test_list|length) %}
         <div class="container">
-            <div class="card mt-4">
-                <div class="card-header">
+            <div class="card mt-4 beige-bg-lighter">
+                <div class="card-header beige-bg-darker">
                     <h5>Question {{i+1}}</h5>
                     <h5>Which {{ test_list[i]['type']|lower }} {{ test_list[i]['effect'] }}?</h5>
                 </div>

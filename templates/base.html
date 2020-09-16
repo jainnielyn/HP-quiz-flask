@@ -12,8 +12,17 @@
     {% block head %} <title>Harry Potter Spell Quiz</title> {% endblock %}
 </head>
 <body>
+    {% block nav %}
+    <nav class="navbar navbar-light bg-grey sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="/"><img src="../static/img/hat.png"></a>
+            <a class="text-dark nav-link mr-sm-2" href="contact">Report an issue</a>
+        </div>
+        </div>
+      </nav>
+    {% endblock %}
     {% block body %}
-            
+
     {% endblock %}
 </body>
 </html>

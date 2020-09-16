@@ -9,7 +9,6 @@ body {
 
 .box {
     width: 40%;
-    background-color: rgba(239,222,205,0.65);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -17,12 +16,16 @@ body {
     border-radius: 15px;
 }
 
-.card{
+.beige-bg-lighter {
     background-color: rgba(239,222,205,0.65);
 }
 
-.card-header {
+.beige-bg-darker {
     background-color: rgba(239,222,205,0.8);
+}
+
+.bg-grey {
+    background-color: #A9A9A9;
 }
 
 #quiz-btn:hover span {
@@ -53,4 +56,9 @@ body {
 
 .fixed-height {
     height: 15vh;
+}
+
+nav img {
+    height: 5vh;
+    margin: 0;
 }
