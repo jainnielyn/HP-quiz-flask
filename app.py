@@ -1,15 +1,26 @@
 from flask import Flask, request, render_template, url_for
+from flask_mail import Message, Mail
 import requests, json
 import random
 import config
 
+mail = Mail()
 app = Flask(__name__)
+
+app.secret_key = config.secret_key
+app.config["MAIL_SERVER"] = config.mail_server
+app.config["MAIL_PORT"] = config.mail_port
+app.config["MAIL_USE_SSL"] = config.mail_use_ssl
+app.config["MAIL_USERNAME"] = config.mail_username
+app.config["MAIL_PASSWORD"] = config.mail_password
 
 # Get all spells from API
 response = requests.get(f"https://www.potterapi.com/v1/spells?key={config.api_key}")
 spells = response.json()
 # Global variable for a list of dict with question, multiple choice, and answer
 test_list = []
+
+mail.init_app(app)
 
 
 def get_questions(num):
@@ -77,6 +88,21 @@ def replay():
 @app.route('/contact', methods=['POST', 'GET'])
 def contact():
     if request.method == "POST":
+        name = request.form['name']
+        email = request.form['email']
+        issue = request.form['issue']
+
+        msg = Message(f"HP quiz web app issue from {name}", 
+        sender=config.mail_username, recipients=[config.mail_recipient])
+
+        print(f"Name in form is {name}")
+
+        msg.body = """
+        From: %s <%s>
+        %s
+        """ % (name, email, issue)
+        mail.send(msg)
+
         return render_template("contact.html",msg="Issue sent to developer. Thank you!")
 
     else:
@@ -85,13 +111,4 @@ def contact():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-app.secret_key = config.secret_key
- 
-app.config["MAIL_SERVER"] = config.mail_server
-app.config["MAIL_PORT"] = config.mail_port
-app.config["MAIL_USE_SSL"] = config.mail_use_ssl
-app.config["MAIL_USERNAME"] = config.mail_username
-app.config["MAIL_PASSWORD"] = config.mail_password
- 
-mail.init_app(app)
+    
