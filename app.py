@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, url_for
 from flask_mail import Message, Mail
-from static import contactForm
+from static import contactForm as cf
 import requests, json
 import random
 import config
@@ -88,17 +88,15 @@ def replay():
 
 @app.route('/contact', methods=['POST', 'GET'])
 def contact():
-    form = ContactForm()
+    form = cf.ContactForm()
 
-    if request.method == "POST":
+    if form.validate_on_submit():
         name = request.form['name']
         email = request.form['email']
         issue = request.form['issue']
 
         msg = Message(f"HP quiz web app issue from {name}", 
         sender=config.mail_username, recipients=[config.mail_recipient])
-
-        print(f"Name in form is {name}")
 
         msg.body = """
         From: %s <%s>
@@ -107,9 +105,7 @@ def contact():
         mail.send(msg)
 
         return render_template("contact.html", form=form, msg="Issue sent to developer. Thank you!")
-
-    else:
-        return render_template("contact.html", form=form)
+    return render_template('contact.html', form=form)
 
 
 if __name__ == "__main__":

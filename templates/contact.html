@@ -5,6 +5,7 @@
     <div class="container">
         <h2 class="pb-2 mt-4 mb-2 border-bottom">Report an issue</h2>
         <form action="/contact" method="POST" class="form-group">
+            {{ form.csrf_token }}
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" name="name" required>
@@ -19,7 +20,7 @@
                 <textarea class="form-control" id="issue" rows="4" name="issue" required></textarea>
             </div>
             <div class="text-center">
-                <button class="btn btn-info mb-3" type="submit">Submit</button>
+                <input type="submit" value="Go" class="btn btn-info">
             </div>
             {% if msg %}
                 <div class="alert alert-secondary" role="alert">
